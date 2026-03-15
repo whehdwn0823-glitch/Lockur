@@ -1,14 +1,30 @@
-<!doctype html>
-<html lang="en">
+
+<!DOCTYPE html>
+<html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hello World</title>
-  <link href='/style.css' rel='stylesheet'>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>아기 이름 생성기</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
 </head>
 <body>
-  <h1>Hello, world!</h1>
-  <button onclick="console.log('hello');">Press me</button>
-  <script defer type="text/javascript" src="/main.js"></script>
+    <div class="container">
+        <h1>아기 이름 생성기</h1>
+        <p>성별을 선택하고 버튼을 눌러 예쁜 아기 이름을 찾아보세요.</p>
+        <div class="gender-selection">
+            <input type="radio" id="girl" name="gender" value="girl" checked>
+            <label for="girl">여자</label>
+            <input type="radio" id="boy" name="gender" value="boy">
+            <label for="boy">남자</label>
+            <input type="radio" id="any" name="gender" value="any">
+            <label for="any">모두</label>
+        </div>
+        <button id="generate-btn">이름 생성하기</button>
+        <div id="name-display">
+            <p id="generated-name"></p>
+        </div>
+    </div>
+    <script src="main.js"></script>
 </body>
 </html>
