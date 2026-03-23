@@ -48,3 +48,87 @@ generateBtn.addEventListener("click", () => {
         nameDisplay.classList.add("show");
     }, 300);
 });
+
+// 댓글 기능 로직
+const commentForm = document.getElementById("comment-form");
+const commentList = document.getElementById("comment-list");
+const commentNameInput = document.getElementById("comment-name");
+const commentTextInput = document.getElementById("comment-text");
+
+// 댓글 로드 및 렌더링
+function loadComments() {
+    const comments = JSON.parse(localStorage.getItem("comments") || "[]");
+    commentList.innerHTML = "";
+    
+    comments.forEach((comment, index) => {
+        const commentItem = document.createElement("div");
+        commentItem.classList.add("comment-item");
+        
+        const date = new Date(comment.date).toLocaleString("ko-KR", {
+            year: "numeric",
+            month: "2-digit",
+            day: "2-digit",
+            hour: "2-digit",
+            minute: "2-digit"
+        });
+
+        commentItem.innerHTML = `
+            <div class="comment-header">
+                <span class="comment-author">${comment.name}</span>
+                <div>
+                    <span class="comment-date">${date}</span>
+                    <button class="delete-comment-btn" data-index="${index}">삭제</button>
+                </div>
+            </div>
+            <div class="comment-body">${comment.text}</div>
+        `;
+        
+        commentList.appendChild(commentItem);
+    });
+
+    // 삭제 버튼 이벤트 연결
+    document.querySelectorAll(".delete-comment-btn").forEach(btn => {
+        btn.addEventListener("click", (e) => {
+            const index = e.target.getAttribute("data-index");
+            deleteComment(index);
+        });
+    });
+}
+
+// 댓글 작성
+commentForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    
+    const name = commentNameInput.value.trim();
+    const text = commentTextInput.value.trim();
+    
+    if (name && text) {
+        const comments = JSON.parse(localStorage.getItem("comments") || "[]");
+        const newComment = {
+            name,
+            text,
+            date: new Date().toISOString()
+        };
+        
+        comments.unshift(newComment); // 최신 댓글을 위로
+        localStorage.setItem("comments", JSON.stringify(comments));
+        
+        commentNameInput.value = "";
+        commentTextInput.value = "";
+        
+        loadComments();
+    }
+});
+
+// 댓글 삭제
+function deleteComment(index) {
+    if (confirm("정말로 이 댓글을 삭제하시겠습니까?")) {
+        const comments = JSON.parse(localStorage.getItem("comments") || "[]");
+        comments.splice(index, 1);
+        localStorage.setItem("comments", JSON.stringify(comments));
+        loadComments();
+    }
+}
+
+// 초기 로드
+loadComments();

@@ -231,6 +231,97 @@ p {
     transform: translateY(-1px);
 }
 
+/* 댓글 섹션 스타일 */
+.comment-section {
+    margin-top: 40px;
+    text-align: left;
+}
+
+.comment-section hr {
+    border: 0;
+    border-top: 1px solid var(--label-bg);
+    margin-bottom: 25px;
+}
+
+.comment-section h3 {
+    color: var(--accent-color);
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+#comment-form {
+    margin-bottom: 30px;
+}
+
+#add-comment-btn {
+    width: 100%;
+    background-color: var(--accent-color);
+    color: white;
+    border: none;
+    padding: 12px;
+    font-size: 1.1em;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#add-comment-btn:hover {
+    background-color: var(--accent-hover);
+}
+
+#comment-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.comment-item {
+    background-color: var(--display-bg);
+    padding: 15px;
+    border-radius: 10px;
+    position: relative;
+    border: 1px solid var(--label-bg);
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.comment-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.comment-author {
+    font-weight: bold;
+    color: var(--accent-color);
+}
+
+.comment-date {
+    font-size: 0.8em;
+    opacity: 0.6;
+}
+
+.comment-body {
+    line-height: 1.5;
+    word-break: break-all;
+}
+
+.delete-comment-btn {
+    background: none;
+    border: none;
+    color: #ff5252;
+    cursor: pointer;
+    font-size: 0.8em;
+    padding: 0;
+    margin-left: 10px;
+}
+
 @media (max-width: 480px) {
     .container {
         padding: 30px 20px;

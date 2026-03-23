@@ -42,6 +42,23 @@
                 <button type="submit" id="submit-btn">문의하기</button>
             </form>
         </div>
+
+        <div class="comment-section">
+            <hr>
+            <h3>댓글</h3>
+            <form id="comment-form">
+                <div class="form-group">
+                    <input type="text" id="comment-name" placeholder="닉네임" required>
+                </div>
+                <div class="form-group">
+                    <textarea id="comment-text" placeholder="댓글을 남겨보세요." required></textarea>
+                </div>
+                <button type="submit" id="add-comment-btn">댓글 등록</button>
+            </form>
+            <div id="comment-list">
+                <!-- 댓글이 여기에 동적으로 추가됩니다 -->
+            </div>
+        </div>
     </div>
     <script src="main.js"></script>
 </body>
