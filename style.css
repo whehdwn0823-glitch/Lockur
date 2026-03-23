@@ -1,34 +1,98 @@
+:root {
+    /* Light Mode (Girl - Default) */
+    --bg-color: #fce4ec;
+    --text-color: #333;
+    --container-bg: #fff;
+    --accent-color: #e91e63;
+    --accent-hover: #c2185b;
+    --label-bg: #f8bbd0;
+    --display-bg: #fce4ec;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+}
+
+body.dark-mode {
+    /* Dark Mode */
+    --bg-color: #121212;
+    --text-color: #e0e0e0;
+    --container-bg: #1e1e1e;
+    --accent-color: #f06292;
+    --accent-hover: #ec407a;
+    --label-bg: #424242;
+    --display-bg: #2d2d2d;
+    --shadow-color: rgba(0, 0, 0, 0.5);
+}
+
+/* Boy Theme Overrides (Light) */
+body.boy-theme {
+    --bg-color: #e3f2fd;
+    --accent-color: #2196f3;
+    --accent-hover: #1976d2;
+    --label-bg: #bbdefb;
+    --display-bg: #e3f2fd;
+}
+
+/* Boy Theme Overrides (Dark) */
+body.dark-mode.boy-theme {
+    --bg-color: #0d1117;
+    --accent-color: #64b5f6;
+    --accent-hover: #42a5f5;
+    --label-bg: #1f2937;
+    --display-bg: #161b22;
+}
 
 body {
     font-family: 'Gowun Dodum', sans-serif;
-    background-color: #fce4ec; /* 연한 핑크 배경 */
-    color: #333;
+    background-color: var(--bg-color);
+    color: var(--text-color);
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
     margin: 0;
-    transition: background-color 0.5s ease;
+    transition: background-color 0.5s ease, color 0.5s ease;
 }
 
 .container {
-    background-color: #fff;
+    background-color: var(--container-bg);
     padding: 40px;
     border-radius: 15px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 10px 25px var(--shadow-color);
     text-align: center;
     width: 90%;
     max-width: 500px;
+    position: relative;
+    transition: background-color 0.5s ease, box-shadow 0.5s ease;
+}
+
+#theme-toggle {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: 2px solid var(--accent-color);
+    color: var(--accent-color);
+    padding: 5px 10px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: all 0.3s ease;
+}
+
+#theme-toggle:hover {
+    background-color: var(--accent-color);
+    color: white;
 }
 
 h1 {
-    color: #e91e63; /* 진한 핑크 */
+    color: var(--accent-color);
     font-size: 2.5em;
     margin-bottom: 10px;
+    transition: color 0.5s ease;
 }
 
 p {
-    color: #555;
+    color: var(--text-color);
+    opacity: 0.8;
     font-size: 1.1em;
     margin-bottom: 30px;
 }
@@ -44,52 +108,52 @@ p {
 .gender-selection label {
     display: inline-block;
     padding: 12px 25px;
-    background-color: #f8bbd0; /* 연한 핑크 */
-    color: #333;
+    background-color: var(--label-bg);
+    color: var(--text-color);
     border-radius: 30px;
     cursor: pointer;
     margin: 0 10px;
-    transition: background-color 0.3s, transform 0.2s;
+    transition: all 0.3s ease, transform 0.2s;
 }
 
 .gender-selection input[type="radio"]:checked + label {
-    background-color: #e91e63; /* 진한 핑크 */
+    background-color: var(--accent-color);
     color: #fff;
     transform: scale(1.1);
 }
 
 #generate-btn {
-    background-color: #e91e63; /* 진한 핑크 */
+    background-color: var(--accent-color);
     color: white;
     border: none;
     padding: 15px 30px;
     font-size: 1.2em;
     border-radius: 30px;
     cursor: pointer;
-    transition: background-color 0.3s, transform 0.2s;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease, transform 0.2s;
+    box-shadow: 0 4px 15px var(--shadow-color);
 }
 
 #generate-btn:hover {
-    background-color: #c2185b; /* 더 진한 핑크 */
+    background-color: var(--accent-hover);
     transform: translateY(-2px);
 }
 
 #name-display {
     margin-top: 30px;
     padding: 20px;
-    background-color: #fce4ec;
+    background-color: var(--display-bg);
     border-radius: 10px;
     min-height: 50px;
     display: flex;
     justify-content: center;
     align-items: center;
-    transition: opacity 0.5s ease-in-out;
+    transition: background-color 0.5s ease;
 }
 
 #generated-name {
-    font-size: 2em;
-    color: #c2185b;
+    font-size: 2.2em;
+    color: var(--accent-hover);
     font-weight: bold;
     opacity: 0;
     transform: translateY(20px);
@@ -101,33 +165,9 @@ p {
     transform: translateY(0);
 }
 
-/* 남자 아이 선택 시 배경색 변경 */
-body.boy-theme {
-    background-color: #e3f2fd; /* 연한 블루 */
-}
-
-body.boy-theme .container h1,
-body.boy-theme .gender-selection input[type="radio"]:checked + label,
-body.boy-theme #generate-btn {
-    background-color: #2196f3; /* 블루 */
-    color: #fff;
-}
-
-body.boy-theme #generate-btn:hover {
-    background-color: #1976d2; /* 더 진한 블루 */
-}
-
-body.boy-theme #name-display {
-    background-color: #e3f2fd;
-}
-
-body.boy-theme #generated-name {
-    color: #1976d2;
-}
-
 @media (max-width: 480px) {
     .container {
-        padding: 20px;
+        padding: 30px 20px;
     }
 
     h1 {
@@ -137,5 +177,6 @@ body.boy-theme #generated-name {
     .gender-selection label {
         padding: 10px 15px;
         margin: 5px;
+        font-size: 0.9em;
     }
 }
